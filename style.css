@@ -35,7 +35,7 @@ select{padding:.4rem .6rem;border-radius:6px;border:1px solid var(--line);font:i
 
 /* ---------- the white sheet ---------- */
 main{
-  max-width:1040px;margin:1.6rem auto 2rem;padding:2rem 1.6rem 3rem;min-height:70vh;
+  position:relative;max-width:1040px;margin:1.6rem auto 2rem;padding:2rem 1.6rem 3rem;min-height:70vh;
   background:var(--paper);box-shadow:0 30px 60px -20px rgba(224,117,122,.28);
 }
 footer{text-align:center;color:var(--mute);font-size:.85rem;padding:0 1rem 2.5rem}
@@ -69,7 +69,7 @@ h1,h2,h3{line-height:1.2;color:var(--ink);font-family:"Playfair Display","Noto S
   font-size:clamp(3.4rem,9vw,5.2rem);line-height:1;color:var(--ink);
 }
 .hero .ta{color:var(--red-d)}
-.hero::before,.hero::after{content:"";position:absolute;z-index:-1;right:9%;top:2.4rem;width:200px;height:100px}
+.hero::before,.hero::after{content:"";position:absolute;z-index:-1;right:26%;top:2.4rem;width:200px;height:100px}
 .hero::before{
   background:var(--coral);border-radius:200px 200px 0 0;
   box-shadow:0 0 90px 34px rgba(232,133,127,.26);
@@ -143,9 +143,40 @@ canvas{background:#fff;border:2px dashed #f2c4c6;border-radius:6px;touch-action:
   .top{padding:.5rem .8rem}
   main{margin:0;padding:1.2rem .9rem 2.4rem;box-shadow:none}
   .hero{min-height:300px;padding:5.2rem 1rem 1.6rem}
-  .hero::before,.hero::after{width:130px;height:65px;right:6%;top:1.6rem}
+  .hero::before,.hero::after{width:130px;height:65px;right:30%;top:1.6rem}
   .hero::after{top:calc(1.6rem + 65px)}
   .hero h1::before{left:1rem;top:.9rem}
 }
 
-@media (prefers-reduced-motion:reduce){.hero::before{animation:none}}
+
+/* ---------- sakura branch (top-right corner of the sheet) ---------- */
+main::before{
+  content:"";position:absolute;z-index:2;pointer-events:none;
+  top:-1.4rem;right:-1.4rem;width:320px;height:235px;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='235' viewBox='0 0 300 220'%3E%3Cdefs%3E%3Cg id='f'%3E%3Cellipse cx='0' cy='-7' rx='5' ry='7.5' fill='%23f6c0cf' stroke='%23e68fa3' stroke-width='.5' transform='rotate(0)'/%3E%3Cellipse cx='0' cy='-7' rx='5' ry='7.5' fill='%23f6c0cf' stroke='%23e68fa3' stroke-width='.5' transform='rotate(72)'/%3E%3Cellipse cx='0' cy='-7' rx='5' ry='7.5' fill='%23f6c0cf' stroke='%23e68fa3' stroke-width='.5' transform='rotate(144)'/%3E%3Cellipse cx='0' cy='-7' rx='5' ry='7.5' fill='%23f6c0cf' stroke='%23e68fa3' stroke-width='.5' transform='rotate(216)'/%3E%3Cellipse cx='0' cy='-7' rx='5' ry='7.5' fill='%23f6c0cf' stroke='%23e68fa3' stroke-width='.5' transform='rotate(288)'/%3E%3Ccircle r='2.4' fill='%23c0505a'/%3E%3Ccircle r='.9' cx='2.6' cy='-1.4' fill='%23fde6e6'/%3E%3Ccircle r='.9' cx='-2.4' cy='1.6' fill='%23fde6e6'/%3E%3C/g%3E%3C/defs%3E%3Cg fill='none' stroke-linecap='round' stroke='%235a3a33'%3E%3Cpath stroke-width='7' d='M306 -4C250 20 200 40 160 80S80 130 36 150'/%3E%3Cpath stroke-width='4' d='M230 30C220 60 205 80 190 100'/%3E%3Cpath stroke-width='3' d='M175 70C150 70 130 85 118 108'/%3E%3Cpath stroke-width='3' d='M160 82C165 110 160 135 148 158'/%3E%3Cpath stroke-width='2.5' d='M110 118C95 112 80 118 66 132'/%3E%3Cpath stroke-width='2' d='M262 14C268 34 262 52 250 66'/%3E%3C/g%3E%3Cg fill='%23e8857f'%3E%3Ccircle cx='252' cy='68' r='3.2'/%3E%3Ccircle cx='120' cy='112' r='3'/%3E%3Ccircle cx='150' cy='162' r='3.2'/%3E%3Ccircle cx='64' cy='136' r='2.6'/%3E%3C/g%3E%3Cuse href='%23f' transform='translate(252 22) scale(1.0)'/%3E%3Cuse href='%23f' transform='translate(214 54) scale(0.9)'/%3E%3Cuse href='%23f' transform='translate(191 98) scale(1.0)'/%3E%3Cuse href='%23f' transform='translate(172 66) scale(0.8)'/%3E%3Cuse href='%23f' transform='translate(130 96) scale(0.9)'/%3E%3Cuse href='%23f' transform='translate(148 150) scale(1.0)'/%3E%3Cuse href='%23f' transform='translate(100 116) scale(0.7)'/%3E%3Cuse href='%23f' transform='translate(70 130) scale(0.9)'/%3E%3Cuse href='%23f' transform='translate(36 148) scale(1.0)'/%3E%3Cuse href='%23f' transform='translate(268 52) scale(0.8)'/%3E%3Cuse href='%23f' transform='translate(284 12) scale(0.9)'/%3E%3C/svg%3E") no-repeat right top / contain;
+}
+
+/* ---------- falling petals: two layers drifting at different speeds ---------- */
+body::before,body::after{
+  content:"";position:fixed;inset:0;z-index:5;pointer-events:none;
+}
+body::before{
+  --s:420px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='420' viewBox='0 0 420 420'%3E%3Cg fill-opacity='.9'%3E%3Cpath transform='translate(60 50) rotate(25) scale(1.0)' fill='%23f4b6c8' d='M0 -12Q3 -15 5 -10C9 -4 6 6 0 11C-6 6 -9 -4 -5 -10Q-3 -15 0 -12Z'/%3E%3Cpath transform='translate(250 120) rotate(-40) scale(0.8)' fill='%23fbd3de' d='M0 -12Q3 -15 5 -10C9 -4 6 6 0 11C-6 6 -9 -4 -5 -10Q-3 -15 0 -12Z'/%3E%3Cpath transform='translate(150 270) rotate(70) scale(1.1)' fill='%23f4b6c8' d='M0 -12Q3 -15 5 -10C9 -4 6 6 0 11C-6 6 -9 -4 -5 -10Q-3 -15 0 -12Z'/%3E%3Cpath transform='translate(350 340) rotate(-10) scale(0.7)' fill='%23f9c6d3' d='M0 -12Q3 -15 5 -10C9 -4 6 6 0 11C-6 6 -9 -4 -5 -10Q-3 -15 0 -12Z'/%3E%3Cpath transform='translate(330 40) rotate(140) scale(0.9)' fill='%23fbd3de' d='M0 -12Q3 -15 5 -10C9 -4 6 6 0 11C-6 6 -9 -4 -5 -10Q-3 -15 0 -12Z'/%3E%3Cpath transform='translate(40 360) rotate(200) scale(0.8)' fill='%23f4b6c8' d='M0 -12Q3 -15 5 -10C9 -4 6 6 0 11C-6 6 -9 -4 -5 -10Q-3 -15 0 -12Z'/%3E%3C/g%3E%3C/svg%3E") 0 0 / var(--s) var(--s);
+  animation:petalsA 26s linear infinite;
+}
+body::after{
+  --s:300px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300' viewBox='0 0 300 300'%3E%3Cg fill-opacity='.9'%3E%3Cpath transform='translate(40 40) rotate(-30) scale(0.7)' fill='%23f9c6d3' d='M0 -12Q3 -15 5 -10C9 -4 6 6 0 11C-6 6 -9 -4 -5 -10Q-3 -15 0 -12Z'/%3E%3Cpath transform='translate(200 90) rotate(60) scale(0.9)' fill='%23f4b6c8' d='M0 -12Q3 -15 5 -10C9 -4 6 6 0 11C-6 6 -9 -4 -5 -10Q-3 -15 0 -12Z'/%3E%3Cpath transform='translate(110 200) rotate(-70) scale(0.75)' fill='%23fbd3de' d='M0 -12Q3 -15 5 -10C9 -4 6 6 0 11C-6 6 -9 -4 -5 -10Q-3 -15 0 -12Z'/%3E%3Cpath transform='translate(250 250) rotate(20) scale(0.65)' fill='%23f4b6c8' d='M0 -12Q3 -15 5 -10C9 -4 6 6 0 11C-6 6 -9 -4 -5 -10Q-3 -15 0 -12Z'/%3E%3Cpath transform='translate(30 150) rotate(110) scale(0.6)' fill='%23fbd3de' d='M0 -12Q3 -15 5 -10C9 -4 6 6 0 11C-6 6 -9 -4 -5 -10Q-3 -15 0 -12Z'/%3E%3C/g%3E%3C/svg%3E") 0 0 / var(--s) var(--s);
+  animation:petalsB 18s linear infinite;
+}
+@keyframes petalsA{to{background-position:var(--s) var(--s)}}
+@keyframes petalsB{to{background-position:calc(var(--s) * -1) var(--s)}}
+
+@media (max-width:600px){
+  main::before{top:0;right:0;width:190px;height:140px}
+  body::before{--s:300px}
+  body::after{--s:220px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .hero::before,body::before,body::after{animation:none}
+}
