@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Japanese N5 Academy</title>
+  <meta name="description" content="Learn Japanese from zero to JLPT N5 in 30 days. Free, Tamil + English.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+JP:wght@400;700&family=Noto+Sans+Tamil:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="#/"><span class="seal">日</span><span>Japanese N5 Academy</span></a>
+    <nav id="nav">
+      <a href="#/" data-r="">Home</a>
+      <a href="#/roadmap" data-r="roadmap">30-Day Path</a>
+      <a href="#/kana" data-r="kana">Kana</a>
+      <a href="#/flash" data-r="flash">Flashcards</a>
+      <a href="#/profile" data-r="profile">Profile</a>
+    </nav>
+    <div class="tools">
+      <select id="lang" aria-label="Teaching language">
+        <option value="both">English + தமிழ்</option>
+        <option value="en">English</option>
+        <option value="ta">தமிழ்</option>
+      </select>
+      <button id="auth" class="btn small">Sign in with Google</button>
+    </div>
+  </header>
+
+  <main id="app" aria-live="polite"></main>
+
+  <footer>
+    <p>日本語 N5 Academy · Free for every student · A 30-day course is an intensive start, not a guarantee of passing the JLPT.</p>
+  </footer>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
