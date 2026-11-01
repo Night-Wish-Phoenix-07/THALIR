@@ -5,13 +5,16 @@ const KEY = "n5academy.v2";
 const TOTAL = ROADMAP.length;
 const $ = s => document.querySelector(s);
 const app = $("#app");
-const defaults = () => ({ lang: "both", prog: {}, xp: 0, streak: 0, last: "", unlockAll: false });
+const defaults = () => ({ lang: "en", prog: {}, xp: 0, streak: 0, last: "", unlockAll: false });
 const flat = rows => rows.flatMap(r => r.items);
 
 let state = load();
 function load() {
-  try { return { ...defaults(), ...JSON.parse(localStorage.getItem(KEY) || "{}") }; }
-  catch { return defaults(); }
+  try {
+    const s = { ...defaults(), ...JSON.parse(localStorage.getItem(KEY) || "{}") };
+    if (s.lang !== "ta") s.lang = "en";
+    return s;
+  } catch { return defaults(); }
 }
 
 // ---------- Cloud (Google login + Firestore) ----------
@@ -39,7 +42,9 @@ function merge(r) {
   for (const [d, s] of Object.entries(state.prog)) prog[d] = Math.max(prog[d] ?? 0, s);
   const base = (r.xp || 0) > state.xp ? r : state;
   state = { ...state, prog, xp: Math.max(state.xp, r.xp || 0), streak: base.streak || 0,
-            last: base.last || "", lang: r.lang || state.lang, unlockAll: state.unlockAll || !!r.unlockAll };
+            last: base.last || "",
+            lang: (r.lang === "ta" || r.lang === "en") ? r.lang : state.lang,
+            unlockAll: state.unlockAll || !!r.unlockAll };
 }
 async function initFirebase() {
   if (!configured) return;
@@ -60,8 +65,7 @@ async function initFirebase() {
 const shuffle = a => { a = [...a]; for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
 const T = p => {
   if (typeof p === "string") return p;
-  const [en, ta] = p;
-  return state.lang === "en" ? en : state.lang === "ta" ? ta : `${en}<span class="ta">${ta}</span>`;
+  return state.lang === "ta" ? p[1] : p[0];
 };
 function speak(text) {
   if (!("speechSynthesis" in window)) return alert("Your browser cannot play speech.");
